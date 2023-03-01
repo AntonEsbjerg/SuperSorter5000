@@ -15,6 +15,6 @@ ISortManager sortManager = new SortManager(
     },
     outputProvider,
     watchProvider);
-int[] array = arrayGenerator.Generate(10000, 5);
+int[] array = arrayGenerator.Generate(100, 5);
 sortManager.TestSorters(array);
 

@@ -16,12 +16,12 @@ public class SortManager : ISortManager
     {
         foreach (var item in SuperSorters)
         {
-            //OutputProvider.OutputLine($"You unsortedarray is: ");
+            OutputProvider.OutputLine($"You unsortedarray is: ");
 
-            //for (int i = 0; i < intArray.Length; i++)
-            //{
-            //    OutputProvider.Output($"{intArray[i]} ");
-            //}
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                OutputProvider.Output($"{intArray[i]} ");
+            }
 
             OutputProvider.OutputLine($"¨Will now sort with {item.GetType()}");
 
@@ -31,10 +31,10 @@ public class SortManager : ISortManager
 
             OutputProvider.OutputLine($"You array has been sort in: {elapsedMs} ms, the resulting array is: ");
 
-            //for (int i = 0; i < sortedResult.Length; i++)
-            //{
-            //    OutputProvider.Output($"{sortedResult[i]} ");
-            //}
+            for (int i = 0; i < sortedResult.Length; i++)
+            {
+                OutputProvider.Output($"{sortedResult[i]} ");
+            }
         }
 
     }
