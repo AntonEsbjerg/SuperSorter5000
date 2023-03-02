@@ -12,29 +12,21 @@ public class SortManager : ISortManager
         OutputProvider = outputProvider ?? throw new ArgumentNullException(nameof(outputProvider));
         WatchProvider = watchProvider ?? throw new ArgumentException(nameof(watchProvider));
     }
-    public void TestSorters(int[] intArray)
+    public void TestSorters(IEnumerable<IArrayGenerator> arrayGenerators)
     {
         foreach (var item in SuperSorters)
         {
-            //OutputProvider.OutputLine($"You unsortedarray is: ");
+            OutputProvider.OutputLine($"Will now sort with {item.GetType()}");
 
-            //for (int i = 0; i < intArray.Length; i++)
-            //{
-            //    OutputProvider.Output($"{intArray[i]} ");
-            //}
-
-            OutputProvider.OutputLine($"¨Will now sort with {item.GetType()}");
-
-            WatchProvider.Start();
-            int[] sortedResult = item.Sort(intArray);
-            long elapsedMs = WatchProvider.Stop();
-
-            OutputProvider.OutputLine($"You array has been sort in: {elapsedMs} ms, the resulting array is: ");
-
-            //for (int i = 0; i < sortedResult.Length; i++)
-            //{
-            //    OutputProvider.Output($"{sortedResult[i]} ");
-            //}
+            foreach (var arrayGenerator in arrayGenerators)
+            {
+                OutputProvider.OutputLine($"Will sort an array of type with {arrayGenerator.GetType()}");
+                WatchProvider.Start();
+                int[] sortedResult = item.Sort(arrayGenerator.Generate(50000, 123));
+                long elapsedMs = WatchProvider.Stop();
+                OutputProvider.OutputLine($"You array has been sorted in: {elapsedMs} ms, the resulting array is: ");
+            }
+            OutputProvider.OutputLine("");
         }
 
     }
